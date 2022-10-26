@@ -1,3 +1,4 @@
+import { CadastroPage } from './../cadastro/cadastro';
 import { Acessorio } from './../../modelos/acessorio';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -26,7 +27,16 @@ export class EscolhaPage {
   }
 
   atualizaTotal(ativado: boolean, acessorio: Acessorio) {
-   ativado ? this._precoTotal += acessorio.preco : this._precoTotal -= acessorio.preco;
+   ativado ?
+   this._precoTotal += acessorio.preco :
+   this._precoTotal -= acessorio.preco;
+  }
+
+  avancaCadastro() {
+    this.navCtrl.push(CadastroPage.name, {
+      carroSelecionado: this.carro,
+      precoTotal: this._precoTotal
+    });
   }
 
   get precoTotal() {
