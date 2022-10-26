@@ -1,9 +1,11 @@
-import { CarrosServiceProvider } from './../../providers/carros-service/carros-service';
-import { Component } from '@angular/core';
-import { AlertController, LoadingController, NavController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import { Carro } from '../../modelos/carro';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CarrosServiceProvider } from '../../providers/carros-service/carros-service';
 import { NavLifecycles } from '../../utils/ionic/nav/nav-lifecycles';
+import { Component } from '@angular/core';
+import { EscolhaPage } from '../../pages/escolha/escolha'
+
 
 @Component({
   selector: 'page-home',
@@ -16,7 +18,7 @@ export class HomePage implements NavLifecycles {
   constructor(public navCtrl: NavController,
     private _loadingCtrl: LoadingController,
     private _alertCtrl: AlertController,
-    private carrosService: CarrosServiceProvider) {}
+    private _carrosService: CarrosServiceProvider) {}
 
   ionViewDidLoad() {
     let loading = this._loadingCtrl.create({
@@ -25,28 +27,33 @@ export class HomePage implements NavLifecycles {
 
     loading.present();
 
-    this.carrosService.lista()
-      .subscribe(
-        (carros) => {
-          this.carros = carros;
+    this._carrosService.lista()
+              .subscribe(
+                (carros) => {
+                  this.carros = carros;
+                  loading.dismiss();
+                },
+                (err: HttpErrorResponse) => {
+                  console.log(err);
 
-          loading.dismiss();
-        },
-        (err: HttpErrorResponse) => {
-          console.log(err);
+                  loading.dismiss();
 
-          loading.dismiss();
+                  this._alertCtrl.create({
+                    title: 'Falha na conexão',
+                    subTitle: 'Não foi possível carregar a lista de carros. Tente novamente mais tarde!',
+                    buttons: [
+                      { text: 'Ok' }
+                    ]
+                  }).present();
+                }
+              );
+  }
 
-          this._alertCtrl.create({
-            title: 'Falha de conexao',
-            subTitle: 'Nao foi possivel carregar a lista de carros. Tente novamente mais tarde!',
-            buttons: [
-              { text: 'Ok' }
-            ]
-          })
-          .present();
-        }
-    );
+  selecionaCarro(carro: Carro) {
+    console.log(carro);
+    this.navCtrl.push(EscolhaPage.name, {
+      carroSelecionado: carro
+    });
   }
 
 }
