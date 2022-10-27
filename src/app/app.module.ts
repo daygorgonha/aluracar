@@ -10,7 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarrosServiceProvider } from '../providers/carros-service/carros-service';
 import { AgendamentosServiceProvider } from '../providers/agendamentos-service/agendamentos-service';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 import 'rxjs/add/operator/finally';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/observable/of';
+import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
 
 @NgModule({
   declarations: [
@@ -21,6 +28,11 @@ import 'rxjs/add/operator/finally';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
+    IonicStorageModule. forRoot({
+      name: 'aluracar',
+      storeName: 'agendamentos',
+      driverOrder: ['indexddb']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +44,8 @@ import 'rxjs/add/operator/finally';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CarrosServiceProvider,
-    AgendamentosServiceProvider
+    AgendamentosServiceProvider,
+    AgendamentoDaoProvider
   ]
 })
 export class AppModule {}
