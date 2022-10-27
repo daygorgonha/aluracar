@@ -1,4 +1,4 @@
-## Curso Alura: Ionic 3 parte 1 - Aplicações híbridas mobile ainda mais poderosas
+## Curso Alura: Ionic 3 parte 1 - Aplicações híbridas mobile ainda mais poderosas e parte 2 - Recursos e build nativos
 
 ### Aprendi sobre: 
 
@@ -11,4 +11,7 @@
 - Tratei os erros de agendamento usando o operador catch do RxJs finalizar a persistência
 - Encapsulei a lógica de persistência para permitir que ela seja utilizada em outras partes da aplicação usando o padrão DAO (Data Access Object)
 - Evitei a sobrescrita de agendamentos repetidos, consultando a base de dados com o método ehDuplicado
+- Como vibrar o dispositivo.
+- Como funciona a entrada nativa de datas.
+- Como fazer execuções diretamente no sistema.
 
