@@ -56,9 +56,6 @@ export class CadastroPage {
         confirmado: false,
         enviado: false,
         data: this.data,
-        push: function (agendamento: any): unknown {
-          throw new Error('Function not implemented.');
-        }
       };
 
     this._alerta = this._alertCtrl.create({

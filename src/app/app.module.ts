@@ -1,3 +1,4 @@
+import { LoginPage } from './../pages/login/login';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -18,11 +19,13 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/of';
 import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
+import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -45,7 +49,8 @@ import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CarrosServiceProvider,
     AgendamentosServiceProvider,
-    AgendamentoDaoProvider
+    AgendamentoDaoProvider,
+    UsuariosServiceProvider
   ]
 })
 export class AppModule {}
