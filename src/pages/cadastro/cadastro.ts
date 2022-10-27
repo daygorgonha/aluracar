@@ -42,19 +42,24 @@ export class CadastroPage {
         buttons: [
           { text: 'ok' }
         ]
-      })
+      }).present();
+
+      return;
     }
 
       let agendamento: Agendamento = {
-      nomeCliente: this.nome,
-      enderecoCliente: this.endereco,
-      emailCliente: this.email,
-      modeloCarro: this.carro.nome,
-      precoTotal: this.precoTotal,
-      confirmado: false,
-      enviado: false,
-      data: this.data
-    };
+        nomeCliente: this.nome,
+        enderecoCliente: this.endereco,
+        emailCliente: this.email,
+        modeloCarro: this.carro.nome,
+        precoTotal: this.precoTotal,
+        confirmado: false,
+        enviado: false,
+        data: this.data,
+        push: function (agendamento: any): unknown {
+          throw new Error('Function not implemented.');
+        }
+      };
 
     this._alerta = this._alertCtrl.create({
       title: 'Aviso',
@@ -76,7 +81,7 @@ export class CadastroPage {
           throw new Error ('Agendamento existente');
         }
 
-        return this._agendamentosService.agenda(agendamento)
+        return this._agendamentosService.agenda(agendamento);
       })
       .mergeMap((valor) => {
         let observable = this._agendamentoDao.salva(agendamento);
