@@ -1,5 +1,4 @@
 export interface Agendamento {
-  push(agendamento: any): unknown;
   nomeCliente: string,
   enderecoCliente: string,
   emailCliente: string,
