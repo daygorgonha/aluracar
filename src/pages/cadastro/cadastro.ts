@@ -1,3 +1,4 @@
+import { DatePicker } from '@ionic-native/date-picker';
 import { AgendamentoDaoProvider } from './../../providers/agendamento-dao/agendamento-dao';
 import { Agendamento } from './../../modelos/agendamento';
 import { HomePage } from './../home/home';
@@ -5,6 +6,8 @@ import { AgendamentosServiceProvider } from './../../providers/agendamentos-serv
 import { Carro } from './../../modelos/carro';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Alert } from 'ionic-angular';
+import { Vibration } from '@ionic-native/vibration';
+
 
 
 @IonicPage()
@@ -28,14 +31,26 @@ export class CadastroPage {
     public navParams: NavParams,
     private _alertCtrl: AlertController,
     private _agendamentosService: AgendamentosServiceProvider,
-    private _agendamentoDao: AgendamentoDaoProvider) {
+    private _agendamentoDao: AgendamentoDaoProvider,
+    private _vibration: Vibration,
+    private _datePicker: DatePicker) {
 
       this.carro = this.navParams.get('carroSelecionado');
       this.precoTotal = this.navParams.get('precoTotal');
     }
 
+  selecionaData() {
+    this._datePicker.show({
+      date: new Date(),
+      mode: 'date',
+    })
+    .then(data => this.data = data.toISOString());
+  }
+
   agenda() {
     if (!this.nome || !this.endereco || this.email) {
+      this._vibration.vibrate(500);
+
       this._alertCtrl.create({
         title: 'Preenchimento obrigatorio',
         subTitle: 'Preencha todos os campos',
