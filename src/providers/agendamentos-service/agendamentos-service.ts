@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AgendamentosServiceProvider {
 
-  private _url = 'http://localhost:8080/api';
+  private _url = 'http://192.168.178.210:8080/api';
 
   constructor(private _http: HttpClient) {}
 
