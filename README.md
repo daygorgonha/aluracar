@@ -1,26 +1,14 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+## Curso Alura: Ionic 3 parte 1 - Aplicações híbridas mobile ainda mais poderosas
 
-## How to use this template
+### Aprendi sobre: 
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
-
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
-
-### With the Ionic CLI:
-
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
-```
-
-Then, to run it, cd into `myBlank` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
+- Implementar a persistência do AluraCar usando a API IndexedDB
+- Aprendi que o Ionic possui um serviço chamado Storage para lidar com persistência e configurou esse serviço no módulo principal da aplicação
+- Modifiquei o modelo de agendamentos para incluir os atributos confirmado e enviado
+- Alterei o estado a propriedade enviado para true sempre que o agendamento for enviado para a API no agendamentos-service
+- Salvei o agendamento na nossa base, através de uma nova propriedade para usar o serviço de Storage do Ionic, convertendo a promise retornada por padrão do serviço de Storage para um Observable
+- Concatenei o envio do agendamento com o salvamento, compondo seus observables do RxJs através do mergeMap
+- Tratei os erros de agendamento usando o operador catch do RxJs finalizar a persistência
+- Encapsulei a lógica de persistência para permitir que ela seja utilizada em outras partes da aplicação usando o padrão DAO (Data Access Object)
+- Evitei a sobrescrita de agendamentos repetidos, consultando a base de dados com o método ehDuplicado
 
